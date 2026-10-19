@@ -117,9 +117,23 @@ const resultado=document.getElementById('result');
 if(respondidas<3){
 resultado.textContent='Responde às 3 perguntas antes de verificar.';
 }else{
-resultado.textContent='Resultado: '+pontos+'/3 respostas corretas. '+(pontos===3?'Excelente trabalho!':'Revê a lição e tenta novamente.');
+resultado.textContent = 'Resultado: ' + pontos + '/3 respostas corretas. ' +
+  (pontos === 3
+    ? 'Excelente trabalho! Aula concluída!'
+    : 'Revê a lição e tenta novamente.');
+
+if (pontos === 3) {
+  localStorage.setItem('aula1Concluida', 'sim');
+  document.getElementById('estadoProgresso').textContent = '✅ Aula 1 concluída!';
 }
 }
 </script>
 </body>
 </html>
+<section id="progresso" style="text-align:center; padding:20px;">
+  <h2>O teu progresso</h2>
+  <p id="estadoProgresso">Aula 1 ainda não concluída.</p>
+</section>
+if (localStorage.getItem('aula1Concluida') === 'sim') {
+  document.getElementById('estadoProgresso').textContent = '✅ Aula 1 concluída!';
+}
