@@ -4,499 +4,648 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>English Academy</title>
+<meta name="description" content="English Academy — aprende inglês através de aulas, audição, leitura e escrita.">
+<title>English Academy | Aprende inglês</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f3f6fc;color:#17233f}
-header{background:#101c3a;color:white;padding:20px 6%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-header h2{color:#ffcf40;margin:0}
-nav a{color:white;text-decoration:none;margin:8px}
-.hero{text-align:center;background:#101c3a;color:white;padding:55px 20px}
-.hero h1{font-size:36px}
-.hero span{color:#ffcf40}
-section{padding:35px 6%;text-align:center}
-button{border:0;border-radius:7px;padding:12px 18px;background:#ffcf40;color:#101c3a;font-weight:bold;cursor:pointer;margin:5px}
-.courses{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
-.card,.lesson{background:white;padding:22px;border-radius:12px;box-shadow:0 3px 12px #00000010}
-.card h3{color:#18366b}
-.lesson{max-width:650px;margin:20px auto;text-align:left}
-.lesson h3{text-align:center}
-.question{padding:15px 0;border-bottom:1px solid #ddd}
-label{display:block;margin:10px 0;cursor:pointer}
-#result{font-weight:bold;margin-top:15px}
-.hidden{display:none}
-footer{background:#101c3a;color:white;text-align:center;padding:22px}
+:root {
+  --navy: #101c3a;
+  --blue: #1769e0;
+  --gold: #ffcf40;
+  --light: #f3f6fc;
+  --white: #ffffff;
+  --text: #17233f;
+  --muted: #64748b;
+  --border: #dbe3ef;
+  --green: #18794e;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--light);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+
+button, input, textarea, select { font: inherit; }
+
+button { cursor: pointer; }
+
+.container {
+  width: min(1120px, 92%);
+  margin: auto;
+}
+
+header {
+  background: var(--navy);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 3px 12px #00000018;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 18px 0;
+}
+
+.brand {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.brand span { color: var(--gold); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+.btn {
+  display: inline-block;
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 18px;
+  background: var(--blue);
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.btn-outline {
+  background: white;
+  color: var(--navy);
+  border: 1px solid var(--border);
+}
+
+.btn:hover { opacity: .88; }
+
+.hero {
+  background: linear-gradient(125deg, #101c3a, #20528a);
+  color: white;
+  padding: 75px 0;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.3fr .7fr;
+  gap: 35px;
+  align-items: center;
+}
+
+.eyebrow {
+  color: #b17b00;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+
+.hero .eyebrow { color: var(--gold); }
+
+h1 {
+  font-size: clamp(34px, 5vw, 54px);
+  line-height: 1.15;
+  margin: 14px 0;
+}
+
+h2 { color: var(--navy); }
+
+.hero p {
+  color: #e3eaf5;
+  font-size: 17px;
+  max-width: 620px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.hero-panel {
+  border: 1px solid #ffffff40;
+  background: #ffffff0d;
+  border-radius: 18px;
+  padding: 25px;
+}
+
+.hero-panel .big {
+  font-size: 42px;
+  font-weight: bold;
+  color: var(--gold);
+}
+
+.hero-panel h2 { color: white; }
+
+section { padding: 55px 0; }
+
+.section-head { margin-bottom: 25px; }
+
+.section-head p {
+  color: var(--muted);
+  max-width: 720px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: -20px;
+  position: relative;
+}
+
+.stat, .card, .lesson-box, .form-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+}
+
+.stat strong {
+  display: block;
+  color: var(--navy);
+  font-size: 22px;
+}
+
+.stat span, .note { color: var(--muted); font-size: 13px; }
+
+.level-grid, .skill-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.level-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 4px solid var(--blue);
+}
+
+.level-code {
+  color: var(--blue);
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.level-card p, .card p { color: var(--muted); }
+
+.level-card .btn { margin-top: auto; }
+
+.progress-track {
+  height: 9px;
+  background: #e5edf5;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: var(--blue);
+  transition: width .3s;
+}
+
+.skill-card .emoji { font-size: 30px; }
+
+.lesson-layout, .account-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: start;
+}
+
+.lesson-box { margin-bottom: 18px; }
+
+.lesson-box h3 { color: var(--navy); }
+
+.english-text { font-size: 19px; font-weight: bold; }
+
+.translation { color: var(--muted); }
+
+label {
+  display: block;
+  margin: 10px 0;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+input, textarea, select {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #bcccdc;
+  border-radius: 8px;
+  margin: 8px 0 15px;
+  background: white;
+  color: var(--text);
+}
+
+textarea { min-height: 120px; resize: vertical; }
+
+.feedback {
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 8px;
+  background: #edf5ff;
+}
+
+.success { background: #e8f7ee; color: #14532d; }
+.error { background: #fff0f0; color: #991b1b; }
+.hidden { display: none !important; }
+
+.payment-box {
+  background: #fff8e6;
+  border: 1px solid #f3d58b;
+  border-radius: 14px;
+  padding: 22px;
+}
+
+.quiz-option {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.quiz-option input {
+  display: inline;
+  width: auto;
+  margin-right: 8px;
+}
+
+footer {
+  background: var(--navy);
+  color: white;
+  padding: 28px 0;
+}
+
+@media (max-width: 760px) {
+  .hero-grid, .lesson-layout, .account-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .level-grid, .skill-grid, .stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero { padding: 48px 0; }
+}
+
+@media (max-width: 460px) {
+  .level-grid, .skill-grid, .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-links { gap: 10px; }
+}
 </style>
-</head>
-<body>
-
-<header>
-<h2>English Academy</h2>
-<nav>
-<a href="#inicio">Início</a>
-<a href="#cursos">Cursos</a>
-<a href="#aula">Aula A1</a>
-</nav>
-</header>
-
-<div class="hero" id="inicio">
-<h1>Learn English <span>Step by Step!</span></h1>
-<p>Aprende inglês com lições e exercícios práticos.</p>
-<button onclick="document.getElementById('cursos').scrollIntoView({behavior:'smooth'})">Explorar cursos</button>
-</div>
-
-<section id="cursos">
-<h2>Escolhe o teu nível</h2>
-<div class="courses">
-<div class="card"><h3>A1 — Iniciante</h3><p>Aprende as primeiras palavras e frases.</p><button onclick="abrirAula()">Começar aula</button></div>
-<div class="card"><h3>A2 — Elementar</h3><p>Pratica conversas do dia a dia.</p><button onclick="alert('Novas aulas A2 em preparação!')">Em breve</button></div>
-<div class="card"><h3>B1 — Intermédio</h3><p>Aprende a expressar opiniões.</p><button onclick="alert('Novas aulas B1 em preparação!')">Em breve</button></div>
-<div class="card"><h3>B2 — Intermédio superior</h3><p>Desenvolve a tua comunicação.</p><button onclick="alert('Novas aulas B2 em preparação!')">Em breve</button></div>
-</div>
-</section>
-
-<section id="aula" class="hidden">
-<h2>Aula 1 — Introductions</h2>
-<div class="lesson">
-<h3>Greetings and Introductions</h3>
-<p><b>Hello!</b> — Olá!</p>
-<p><b>My name is John.</b> — O meu nome é John.</p>
-<p><b>How are you?</b> — Como estás?</p>
-<p><b>I'm fine, thank you.</b> — Estou bem, obrigado.</p>
-<p><b>Nice to meet you.</b> — Prazer em conhecer-te.</p>
-<hr>
-<h3>Exercise — Escolhe a resposta correta</h3>
-<form id="quiz">
-<div class="question">
-<p>1. O que significa "Hello"?</p>
-<label><input type="radio" name="q1" value="a"> Adeus</label>
-<label><input type="radio" name="q1" value="b"> Olá</label>
-<label><input type="radio" name="q1" value="c"> Obrigado</label>
-</div>
-<div class="question">
-<p>2. Como dizes "O meu nome é Ana"?</p>
-<label><input type="radio" name="q2" value="a"> How are you?</label>
-<label><input type="radio" name="q2" value="b"> Goodbye, Ana.</label>
-<label><input type="radio" name="q2" value="c"> My name is Ana.</label>
-</div>
-<div class="question">
-<p>3. O que significa "How are you?"?</p>
-<label><input type="radio" name="q3" value="a"> Como estás?</label>
-<label><input type="radio" name="q3" value="b"> Qual é o teu nome?</label>
-<label><input type="radio" name="q3" value="c"> Até amanhã.</label>
-</div>
-<button type="button" onclick="corrigir()">Verificar respostas</button>
-<p id="result" aria-live="polite"></p>
-</form>
-</div>
-</section>
-
-<footer>
-<p>English Academy © 2026</p>
-<p>Learn today. Communicate with the world.</p>
-</footer>
-
-<script>
-function abrirAula(){
-const aula=document.getElementById('aula');
-aula.classList.remove('hidden');
-aula.scrollIntoView({behavior:'smooth'});
-}
-function corrigir(){
-const respostas={q1:'b',q2:'c',q3:'a'};
-let pontos=0;
-let respondidas=0;
-for(const pergunta in respostas){
-const escolhida=document.querySelector('input[name="'+pergunta+'"]:checked');
-if(escolhida){
-respondidas++;
-if(escolhida.value===respostas[pergunta])pontos++;
-}
-}
-const resultado=document.getElementById('result');
-if(respondidas<3){
-resultado.textContent='Responde às 3 perguntas antes de verificar.';
-}else{
-resultado.textContent = 'Resultado: ' + pontos + '/3 respostas corretas. ' +
-  (pontos === 3
-    ? 'Excelente trabalho! Aula concluída!'
-    : 'Revê a lição e tenta novamente.');
-
-if (pontos === 3) {
-  localStorage.setItem('aula1Concluida', 'sim');
-  document.getElementById('estadoProgresso').textContent = '✅ Aula 1 concluída!';
-}
-}
-</script>
-</body>
-</html>
-<section id="progresso" style="text-align:center; padding:20px;">
-  <h2>O teu progresso</h2>
-  <p id="estadoProgresso">Aula 1 ainda não concluída.</p>
-</section>
-if (localStorage.getItem('aula1Concluida') === 'sim') {
-  document.getElementById('estadoProgresso').textContent = '✅ Aula 1 concluída!';
-}
-
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="English Academy — aprende inglês com cursos progressivos, audição, leitura e escrita.">
-  <meta name="theme-color" content="#102a43">
-  <title>English Academy | Aprende inglês passo a passo</title>
-
-  <style>
-    :root {
-      --navy: #102a43;
-      --blue: #1769e0;
-      --gold: #f5bd45;
-      --light: #f4f7fb;
-      --white: #fff;
-      --text: #243b53;
-      --muted: #627d98;
-      --border: #d9e2ec;
-      --green: #18794e;
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: var(--light);
-      line-height: 1.6;
-    }
-
-    button, input, textarea, select { font: inherit; }
-    button, a { -webkit-tap-highlight-color: transparent; }
-    a { color: inherit; text-decoration: none; }
-
-    button {
-      cursor: pointer;
-      border: 0;
-    }
-
-    button:focus-visible, a:focus-visible,
-    input:focus-visible, textarea:focus-visible {
-      outline: 3px solid var(--gold);
-      outline-offset: 3px;
-    }
-
-    .container { width: min(1120px, 92%); margin: auto; }
-
-    header {
-      background: var(--navy);
-      color: white;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      box-shadow: 0 3px 15px #102a4320;
-    }
-
-    .nav {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-      padding: 12px 0;
-    }
-
-    .brand { font-size: 21px; font-weight: 800; }
-    .brand span { color: var(--gold); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      font-size: 14px;
-    }
-
-    .nav-links a:hover { color: var(--gold); }
-
-    .btn {
-      display: inline-block;
-      padding: 12px 19px;
-      border-radius: 9px;
-      font-weight: 700;
-      background: var(--blue);
-      color: white;
-      transition: transform .2s, opacity .2s;
-    }
-
-    .btn:hover { transform: translateY(-2px); }
-    .btn-gold { background: var(--gold); color: var(--navy); }
-    .btn-outline { border: 1px solid var(--border); background: white; color: var(--navy); }
-    .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
-
-    .hero {
-      color: white;
-      background: linear-gradient(125deg, #102a43, #174c80);
-      padding: 76px 0;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.3fr .7fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      color: var(--gold);
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 12px;
-    }
-
-    h1 { font-size: clamp(34px, 5vw, 55px); line-height: 1.12; margin: 14px 0; }
-    h2 { color: var(--navy); line-height: 1.25; }
-    .hero p { max-width: 600px; color: #e1eaf4; font-size: 17px; }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 25px; }
-
-    .hero-panel {
-      padding: 28px;
-      border: 1px solid #ffffff35;
-      border-radius: 20px;
-      background: #ffffff0d;
-    }
-
-    .hero-panel .big { font-size: 48px; font-weight: 800; color: var(--gold); }
-    .hero-panel li { margin: 10px 0; }
-
-    section { padding: 62px 0; }
-    .section-head { margin-bottom: 26px; }
-    .section-head p { color: var(--muted); max-width: 680px; }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: -25px;
-      position: relative;
-    }
-
-    .stat, .card, .lesson-box, .form-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      padding: 23px;
-    }
-
-    .stat strong { display: block; color: var(--navy); font-size: 23px; }
-    .stat span { color: var(--muted); font-size: 14px; }
-
-    .level-grid, .skill-grid, .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .level-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      border-top: 4px solid var(--blue);
-    }
-
-    .level-card.locked { opacity: .65; }
-    .level-code { color: var(--blue); font-size: 26px; font-weight: 800; }
-    .level-card p, .card p { color: var(--muted); font-size: 14px; }
-    .level-card .btn { margin-top: auto; text-align: center; }
-    .status { font-size: 12px; font-weight: 700; color: var(--green); }
-
-    .progress-track {
-      height: 9px;
-      background: #e5edf5;
-      border-radius: 20px;
-      overflow: hidden;
-      margin: 12px 0;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 0;
-      background: var(--blue);
-      transition: width .3s;
-    }
-
-    .skill-card .emoji { font-size: 30px; }
-    .skill-card h3 { color: var(--navy); }
-
-    .lesson-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      align-items: start;
-    }
-
-    .lesson-box { margin-bottom: 18px; }
-    .lesson-box h3 { margin-top: 0; color: var(--navy); }
-    .english-text { font-size: 20px; font-weight: 700; }
-    .translation { color: var(--muted); }
-    .word-list { padding-left: 20px; }
-    .word-list li { margin: 7px 0; }
-
-    textarea, input {
-      display: block;
-      width: 100%;
-      border: 1px solid #bcccdc;
-      border-radius: 8px;
-      padding: 12px;
-      margin: 8px 0 15px;
-      background: white;
-      color: var(--text);
-    }
-
-    textarea { resize: vertical; min-height: 120px; }
-    label { display: block; font-weight: 700; font-size: 14px; }
-
-    .feedback {
-      border-radius: 9px;
-      padding: 12px;
-      margin-top: 12px;
-      background: #edf7ff;
-      color: var(--navy);
-      white-space: pre-line;
-    }
-
-    .feedback.success { background: #e8f7ee; color: #14532d; }
-    .feedback.error { background: #fff0f0; color: #991b1b; }
-
-    .quiz-option {
-      display: block;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      padding: 12px;
-      margin: 9px 0;
-      cursor: pointer;
-    }
-
-    .quiz-option:has(input:checked) {
-      border-color: var(--blue);
-      background: #edf5ff;
-    }
-
-    .quiz-option input { display: inline; width: auto; margin: 0 8px 0 0; }
-
-    .account-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      align-items: start;
-    }
-
-    .note { color: var(--muted); font-size: 13px; }
-    .hidden { display: none !important; }
-
-    .payment-box {
-      background: #fff8e6;
-      border: 1px solid #f3d58b;
-      border-radius: 14px;
-      padding: 22px;
-    }
-
-    footer { background: var(--navy); color: #d9e2ec; padding: 32px 0; }
-    footer strong { color: white; }
-    .footer-row { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-
-    @media (max-width: 760px) {
-      .hero-grid, .lesson-layout, .account-grid { grid-template-columns: 1fr; }
-      .level-grid, .skill-grid, .feature-grid { grid-template-columns: 1fr 1fr; }
-      .hero { padding: 52px 0; }
-      .nav { align-items: flex-start; }
-      .nav-links { gap: 12px; }
-    }
-
-    @media (max-width: 460px) {
-      .level-grid, .skill-grid, .feature-grid, .stats { grid-template-columns: 1fr; }
-      .nav-links { font-size: 13px; }
-      .stat { padding: 16px; }
-    }
-  </style>
 </head>
 
 <body>
 <header>
   <div class="container nav">
     <a class="brand" href="#inicio">English <span>Academy</span></a>
-    <nav class="nav-links" aria-label="Menu principal">
+    <nav class="nav-links">
+      <a href="#inicio">Início</a>
       <a href="#cursos">Cursos</a>
       <a href="#competencias">Competências</a>
-      <a href="#aula">Aula gratuita</a>
-      <a href="#conta">Conta</a>
-      <a class="btn btn-gold" href="#conta">Inscrever-me</a>
+      <a href="#aula">Aulas</a>
+      <a href="#conta">Inscrição</a>
     </nav>
   </div>
 </header>
 
 <main>
-  <section class="hero" id="inicio">
-    <div class="container hero-grid">
-      <div>
-        <div class="eyebrow">O teu inglês começa aqui</div>
-        <h1>Aprende inglês.<br>Abre novas oportunidades.</h1>
-        <p>
-          Uma experiência de aprendizagem organizada por níveis,
-          com prática de audição, leitura, escrita e vocabulário.
-          Avança ao teu ritmo e acompanha o teu progresso.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-gold" href="#cursos">Explorar cursos</a>
-          <a class="btn btn-outline" href="#aula">Experimentar uma aula</a>
-        </div>
-      </div>
-      <div class="hero-panel">
-        <div class="big">A1 → C2</div>
-        <h2 style="color:white">O teu percurso de aprendizagem</h2>
-        <ul>
-          <li>Fundamentos e comunicação</li>
-          <li>Conversação e compreensão</li>
-          <li>Inglês avançado e fluência</li>
-        </ul>
-        <p>Começa no nível adequado aos teus conhecimentos.</p>
+<section class="hero" id="inicio">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">O teu futuro começa aqui</div>
+      <h1>Aprende inglês.<br>Abre novas oportunidades.</h1>
+      <p>
+        Aprende ao teu ritmo com níveis organizados,
+        exercícios práticos e treino de audição, leitura e escrita.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#cursos">Explorar cursos</a>
+        <a class="btn btn-outline" href="#aula">Experimentar uma aula</a>
       </div>
     </div>
-  </section>
 
-  <div class="container stats">
-    <div class="stat"><strong>6 níveis</strong><span>Do principiante ao proficiente</span></div>
-    <div class="stat"><strong>4 competências</strong><span>Audição, leitura, escrita e fala</span></div>
-    <div class="stat"><strong>Ao teu ritmo</strong><span>Prática e revisão das aulas</span></div>
+    <div class="hero-panel">
+      <div class="big">A1 → C2</div>
+      <h2>O teu percurso de inglês</h2>
+      <p>Desde as primeiras palavras até à comunicação avançada.</p>
+      <ul>
+        <li>Aulas progressivas</li>
+        <li>Prática de compreensão</li>
+        <li>Exercícios e revisão</li>
+      </ul>
+    </div>
   </div>
+</section>
 
-  <section id="cursos">
-    <div class="container">
-      <div class="section-head">
-        <div class="eyebrow">Percurso académico</div>
-        <h2>Escolhe o teu nível de inglês</h2>
-        <p>Os níveis estão organizados do A1 ao C2. Cada nível deve conter aulas, exercícios e avaliações próprias. Os conteúdos abaixo são uma apresentação inicial.</p>
-      </div>
-      <div class="level-grid" id="levelGrid"></div>
-      <div class="card" style="margin-top:22px">
-        <strong>Progresso nesta demonstração</strong>
-        <div class="progress-track"><div class="progress-fill" id="courseProgress"></div></div>
-        <span id="progressText" class="note">0 de 6 níveis concluídos</span>
-      </div>
+<div class="container stats">
+  <div class="stat">
+    <strong>6 níveis</strong>
+    <span>Do principiante ao proficiente</span>
+  </div>
+  <div class="stat">
+    <strong>4 competências</strong>
+    <span>Audição, leitura, escrita e fala</span>
+  </div>
+  <div class="stat">
+    <strong>Ao teu ritmo</strong>
+    <span>Aprende passo a passo</span>
+  </div>
+</div>
+
+<!-- A PARTE 2 SERÁ COLOCADA AQUI -->
+</main>
+</body>
+</html>
+
+<section id="cursos" class="section">
+  <div class="container">
+    <p class="eyebrow">O TEU PERCURSO</p>
+    <h2>Escolhe o teu nível de inglês</h2>
+    <p>Avança passo a passo, desde o nível inicial até ao avançado.</p>
+
+    <div class="level-grid" id="levelGrid">
+      <article class="level-card">
+        <span class="level-tag">Nível 1</span>
+        <h3>A1 — Iniciante</h3>
+        <p>Aprende apresentações, vocabulário básico e frases simples.</p>
+        <button onclick="abrirAula('A1')">Começar A1</button>
+      </article>
+      <article class="level-card">
+        <span class="level-tag">Nível 2</span>
+        <h3>A2 — Elementar</h3>
+        <p>Fala sobre a tua rotina, família, trabalho e experiências.</p>
+        <button onclick="abrirAula('A2')">Começar A2</button>
+      </article>
+      <article class="level-card">
+        <span class="level-tag">Nível 3</span>
+        <h3>B1 — Intermédio</h3>
+        <p>Desenvolve conversas e compreende textos do dia a dia.</p>
+        <button onclick="abrirAula('B1')">Começar B1</button>
+      </article>
+      <article class="level-card">
+        <span class="level-tag">Nível 4</span>
+        <h3>B2 — Intermédio superior</h3>
+        <p>Explica opiniões e comunica com maior confiança.</p>
+        <button onclick="abrirAula('B2')">Começar B2</button>
+      </article>
+      <article class="level-card">
+        <span class="level-tag">Nível 5</span>
+        <h3>C1 — Avançado</h3>
+        <p>Trabalha a fluência, os textos complexos e a argumentação.</p>
+        <button onclick="abrirAula('C1')">Começar C1</button>
+      </article>
+      <article class="level-card">
+        <span class="level-tag">Nível 6</span>
+        <h3>C2 — Proficiência</h3>
+        <p>Aperfeiçoa a compreensão e a comunicação avançadas.</p>
+        <button onclick="abrirAula('C2')">Começar C2</button>
+      </article>
     </div>
-  </section>
 
-  <section id="competencias" style="background:#eaf1f8">
-    <div class="container">
-      <div class="section-head">
-        <div class="eyebrow">Aprendizagem completa</div>
-        <h2>Desenvolve as quatro competências</h2>
-        <p>Uma boa aprendizagem combina compreensão, prática e utilização do inglês em situações reais.</p>
+    <div class="progress-box">
+      <h3>O teu progresso</h3>
+      <div class="progress-track">
+        <div id="courseProgress" class="progress-fill"></div>
       </div>
-      <div class="skill-grid">
-        <div class="card skill-card">
-          <div class="emoji">🎧</
+      <p id="progressText">0% concluído</p>
+    </div>
+  </div>
+</section>
+
+<section id="competencias" class="section section-alt">
+  <div class="container">
+    <p class="eyebrow">APRENDIZAGEM COMPLETA</p>
+    <h2>Desenvolve as quatro competências</h2>
+    <div class="skill-grid">
+      <article class="skill-card">
+        <h3>🎧 Listening</h3>
+        <p>Pratica a compreensão do inglês ouvido.</p>
+      </article>
+      <article class="skill-card">
+        <h3>📖 Reading</h3>
+        <p>Lê textos e aprende vocabulário em contexto.</p>
+      </article>
+      <article class="skill-card">
+        <h3>✍️ Writing</h3>
+        <p>Aprende a escrever frases e pequenos textos.</p>
+      </article>
+      <article class="skill-card">
+        <h3>🗣️ Speaking</h3>
+        <p>Treina expressões úteis para conversas reais.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="aula" class="section">
+  <div class="container">
+    <p class="eyebrow">AULA DE DEMONSTRAÇÃO</p>
+    <h2 id="lessonTitle">Inglês A1 — Apresentações</h2>
+    <p id="lessonIntro">Aprende a apresentar-te em inglês.</p>
+
+    <div class="lesson-layout">
+      <article class="lesson-card">
+        <h3>1. Vocabulário</h3>
+        <p><strong>Hello</strong> — Olá</p>
+        <p><strong>My name is...</strong> — O meu nome é...</p>
+        <p><strong>How are you?</strong> — Como estás?</p>
+        <p><strong>I'm fine, thank you.</strong> — Estou bem, obrigado/a.</p>
+      </article>
+
+      <article class="lesson-card">
+        <h3>2. Listening</h3>
+        <p>Ouve a frase e repete em voz alta.</p>
+        <p><strong>Hello! My name is Daniel.</strong></p>
+        <button onclick="ouvirFrase()">🔊 Ouvir frase</button>
+      </article>
+
+      <article class="lesson-card">
+        <h3>3. Reading</h3>
+        <p>Hi! My name is Daniel. I am a student. I am learning English.</p>
+        <p><strong>Compreensão:</strong> What is Daniel learning?</p>
+      </article>
+
+      <article class="lesson-card">
+        <h3>4. Writing</h3>
+        <label for="writingAnswer">Escreve uma apresentação em inglês:</label>
+        <textarea id="writingAnswer" rows="4" placeholder="Hello! My name is..."></textarea>
+        <p>Escreve o teu nome e uma frase sobre ti.</p>
+      </article>
+    </div>
+
+    <div class="quiz-card">
+      <h3>Teste rápido</h3>
+      <p>1. Como se diz “Olá” em inglês?</p>
+      <label><input type="radio" name="q1" value="wrong"> Goodbye</label>
+      <label><input type="radio" name="q1" value="correct"> Hello</label>
+
+      <p>2. O que significa “My name is Daniel”?</p>
+      <label><input type="radio" name="q2" value="correct"> O meu nome é Daniel</label>
+      <label><input type="radio" name="q2" value="wrong"> Estou bem</label>
+
+      <p>3. Completa: “How ___ you?”</p>
+      <label><input type="radio" name="q3" value="wrong"> is</label>
+      <label><input type="radio" name="q3" value="correct"> are</label>
+
+      <button onclick="corrigirQuiz()">Ver resultado</button>
+      <p id="quizResult" aria-live="polite"></p>
+      <button onclick="concluirAula()">Concluir aula</button>
+    </div>
+  </div>
+</section>
+
+<section id="conta" class="section section-alt">
+  <div class="container">
+    <p class="eyebrow">ÁREA DO ESTUDANTE</p>
+    <h2>Começa a tua jornada</h2>
+    <p>Preenche os teus dados para experimentar o formulário.</p>
+
+    <form id="signupForm" class="signup-form">
+      <label for="studentName">Nome completo</label>
+      <input id="studentName" name="name" type="text" placeholder="O teu nome" required>
+
+      <label for="studentEmail">E-mail</label>
+      <input id="studentEmail" name="email" type="email" placeholder="nome@exemplo.com" required>
+
+      <button type="submit">Registar interesse</button>
+      <p id="signupMessage" aria-live="polite"></p>
+    </form>
+
+    <div class="lesson-card">
+      <h3>Inscrições e pagamentos</h3>
+      <p>Esta área é apenas demonstrativa. O registo ainda não envia dados para um servidor e os pagamentos ainda não estão activos.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p><strong>Academia de English</strong></p>
+    <p>Aprende inglês. Desenvolve competências. Abre novas oportunidades.</p>
+    <p>© 2026 Academia de English</p>
+  </div>
+</footer>
+
+<script>
+const aulasConcluidas = new Set();
+
+function abrirAula(nivel) {
+  const titulos = {
+    A1: "A1 — Apresentações",
+    A2: "A2 — Conversas do dia a dia",
+    B1: "B1 — Comunicar com confiança",
+    B2: "B2 — Expressar opiniões",
+    C1: "C1 — Inglês avançado",
+    C2: "C2 — Proficiência em inglês"
+  };
+
+  document.getElementById("lessonTitle").textContent = titulos[nivel];
+  document.getElementById("lessonIntro").textContent =
+    "Estás a explorar o nível " + nivel +
+    ". A aula de demonstração abaixo ainda contém exercícios A1.";
+  document.getElementById("aula").scrollIntoView({ behavior: "smooth" });
+}
+
+function ouvirFrase() {
+  if (!("speechSynthesis" in window)) {
+    alert("O teu navegador não suporta a reprodução de voz.");
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+  const frase = new SpeechSynthesisUtterance(
+    "Hello! My name is Daniel."
+  );
+  frase.lang = "en-US";
+  frase.rate = 0.85;
+  window.speechSynthesis.speak(frase);
+}
+
+function corrigirQuiz() {
+  let pontos = 0;
+
+  for (let i = 1; i <= 3; i++) {
+    const resposta = document.querySelector(
+      'input[name="q' + i + '"]:checked'
+    );
+
+    if (resposta && resposta.value === "correct") {
+      pontos++;
+    }
+  }
+
+  document.getElementById("quizResult").textContent =
+    "Resultado: " + pontos + " de 3 respostas correctas.";
+
+  if (pontos === 3) {
+    document.getElementById("quizResult").textContent +=
+      " Excelente trabalho!";
+  }
+}
+
+function concluirAula() {
+  aulasConcluidas.add("A1");
+  actualizarProgresso();
+  alert("Aula de demonstração concluída!");
+}
+
+function actualizarProgresso() {
+  const percentagem = Math.round(
+    (aulasConcluidas.size / 6) * 100
+  );
+
+  document.getElementById("courseProgress").style.width =
+    percentagem + "%";
+
+  document.getElementById("progressText").textContent =
+    percentagem + "% concluído";
+}
+
+document.getElementById("signupForm").addEventListener(
+  "submit",
+  function(event) {
+    event.preventDefault();
+
+    const nome = document.getElementById("studentName").value.trim();
+
+    document.getElementById("signupMessage").textContent =
+      "Obrigado, " + nome +
+      "! O formulário funciona como demonstração, mas o teu registo ainda não foi enviado.";
+  }
+);
+</script>
+</main>
+</body>
+</html>
